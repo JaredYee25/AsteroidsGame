@@ -9,46 +9,47 @@
 //}
 
 Spaceship bob = new Spaceship();
-Star[] sue = new Star[500];
-ArrayList<Asteroid> joe = new ArrayList<Asteroid>();
+Star[] buzz = new Star[500];
+ArrayList<Asteroid> rock = new ArrayList<Asteroid>();
 ArrayList <Bullet> shot = new ArrayList <Bullet>();
 public void setup() 
 {
   size(500, 500);
-  for (int i=0; i<sue.length; i++)
+  for (int i=0; i<buzz.length; i++)
   {
-    sue[i]= new Star();
+    buzz[i]= new Star();
   }
   for (int i =0; i<10; i++)
   {
-    joe.add(new Asteroid());
+    rock.add(new Asteroid());
   }
 }
 public void draw() 
 {
   background(0);
-  for (int i=0; i<sue.length; i++)
+  for (int i=0; i<buzz.length; i++)
   {
-    sue[i].show();
+    buzz[i].show();
   }
   for(int j = 0; j < shot.size(); j++)
   {
     shot.get(j).show();
     shot.get(j).move();
   }
-  for(int i =0; i<joe.size(); i++)
+  for(int i =0; i<rock.size(); i++)
   {
-    joe.get(i).show();
-    joe.get(i).move();
-    float remove = dist(bob.getX(), bob.getY(), joe.get(i).getX(), joe.get(i).getY());
-    if(remove<30)
-    joe.remove(i);
+    rock.get(i).show();
+    rock.get(i).move();
+    float remove = dist(bob.getX(), bob.getY(), rock.get(i).getX(), rock.get(i).getY());
+    if(remove<30){
+    rock.remove(i);
+    break;}
     for(int j = 0; j < shot.size(); j++)
   {
-    float r = dist(shot.get(j).getX(), shot.get(j).getY(), joe.get(i).getX(), joe.get(i).getY());
+    float r = dist(shot.get(j).getX(), shot.get(j).getY(), rock.get(i).getX(), rock.get(i).getY());
     if (r < 30)
   {
-    joe.remove(i);
+    rock.remove(i);
     shot.remove(j);
     break;
   }
@@ -69,22 +70,22 @@ public void keyPressed()
     bob.setPointDirection((int)(Math.random()*360));
   }
   //rotationL
-  if (key == 'w')
+  if (key == 'a')
   {
     bob.turn(-40);
   }
   //rotationR
-  if (key == 'a')
+  if (key == 'd')
   {
     bob.turn(40);
   }
   //accelerate
-  if (key == 's')
+  if (key == 'w')
   {
     bob.accelerate(1);
   }
   //deccelerate
-  if (key == 'd')
+  if (key == 's')
   {
     bob.accelerate(-1);
   }
